@@ -1,0 +1,324 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref1"
+            },
+            "Name": "Jedi Holocron",
+            "ProductCode": "ACC-Jedi-Holo",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref2"
+            },
+            "Name": "Sith Holocron",
+            "ProductCode": "ACC-Sith-Holo",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref3"
+            },
+            "Name": "Basic Blaster",
+            "ProductCode": "ACC-Blaster",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref4"
+            },
+            "Name": "Lightsaber Hilt",
+            "ProductCode": "ACC-Hilt",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref5"
+            },
+            "Name": "Blue Kyber Crystal",
+            "ProductCode": "ACC-Crystal-Blue",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref6"
+            },
+            "Name": "Green Kyber Crystal",
+            "ProductCode": "ACC-Crystal-Green",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref7"
+            },
+            "Name": "Red Kyber Crystal",
+            "ProductCode": "ACC-Crystal-Red",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref8"
+            },
+            "Name": "Purple Kyber Crystal",
+            "ProductCode": "ACC-Crystal-Purple",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref9"
+            },
+            "Name": "Yellow Kyber Crystal",
+            "ProductCode": "ACC-Crystal-Yellow",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref10"
+            },
+            "Name": "Black Kyber Crystal",
+            "ProductCode": "ACC-Crystal-Black",
+            "Family": "Accessory",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref11"
+            },
+            "Name": "Brown Robe",
+            "ProductCode": "Robe-Brown",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref12"
+            },
+            "Name": "Gray Robe",
+            "ProductCode": "Robe-Gray",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref13"
+            },
+            "Name": "White Robe",
+            "ProductCode": "Robe-White",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref14"
+            },
+            "Name": "Black Robe",
+            "ProductCode": "Robe-Black",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref15"
+            },
+            "Name": "Flight Vest",
+            "ProductCode": "Flight-Vest",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref16"
+            },
+            "Name": "Orange Flight Suit",
+            "ProductCode": "Flight-Suit-Orange",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref17"
+            },
+            "Name": "Black Flight Suit",
+            "ProductCode": "Flight-Suit-Black",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref18"
+            },
+            "Name": "Green Flight Suit",
+            "ProductCode": "Flight-Suit-Green",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref19"
+            },
+            "Name": "Blue Flight Suit",
+            "ProductCode": "Flight-Suit-Blue",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref20"
+            },
+            "Name": "White Flight Helmet",
+            "ProductCode": "Flight-Helmet-White",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref21"
+            },
+            "Name": "Black Flight Helment",
+            "ProductCode": "Flight-Helmet-Black",
+            "Family": "Apparel",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref22"
+            },
+            "Name": "X-Wing",
+            "ProductCode": "Ship-XWing",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref23"
+            },
+            "Name": "Y-Wing",
+            "ProductCode": "Ship-YWing",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref24"
+            },
+            "Name": "B-Wing",
+            "ProductCode": "Ship-BWing",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref25"
+            },
+            "Name": "A-Wing",
+            "ProductCode": "Ship-AWing",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref26"
+            },
+            "Name": "U-Wing",
+            "ProductCode": "Ship-UWing",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref27"
+            },
+            "Name": "TIE Fighter",
+            "ProductCode": "Ship-TIE-Basic",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref28"
+            },
+            "Name": "TIE Advanced Fighter",
+            "ProductCode": "Ship-TIE-Advanced",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref29"
+            },
+            "Name": "TIE Bomber",
+            "ProductCode": "Ship-TIE-Bomber",
+            "Family": "Vehicle",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref30"
+            },
+            "Name": "Service - Jawa",
+            "ProductCode": "Serv-Jawa",
+            "Family": "Service",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref31"
+            },
+            "Name": "Service - Astromech Droid",
+            "ProductCode": "Serv-Astromech",
+            "Family": "Service",
+            "IsActive": true
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref32"
+            },
+            "Name": "Service - Protocol Droid",
+            "ProductCode": "Serv-Protocol",
+            "Family": "Service",
+            "IsActive": true
+        }
+    ]
+}
