@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>UpdateLineItemDiscounts</name>
+        <label>Update Line Item Discounts</label>
+        <locationX>169</locationX>
+        <locationY>148</locationY>
+        <actionName>OpportunityDiscountsAction</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>oppIds</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>UpdateLineItemDiscounts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Line Item Discounts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <startElementReference>UpdateLineItemDiscounts</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

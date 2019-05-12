@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>LAFORCEACADEMY_FINALNOYEAR</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Force Academy LA 2019 - Reducing Code Complexity With Custom Metadata Demo App</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>FALA19 Custom Metadata</label>
+    <navType>Standard</navType>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>standard-Pricebook2</tabs>
+    <tabs>standard-Product2</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>FALA19CustomMetadataUtilityBar</utilityBar>
+</CustomApplication>

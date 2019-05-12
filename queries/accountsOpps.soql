@@ -1,0 +1,1 @@
+SELECT Name, (SELECT Id, Name, CloseDate, StageName, Type FROM Opportunities) FROM Account
