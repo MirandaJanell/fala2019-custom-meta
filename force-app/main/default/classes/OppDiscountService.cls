@@ -4,8 +4,8 @@ public with sharing class OppDiscountService {
 	 * @param  oppIds The Opportunitiy Record Ids 
 	 */
 	public void updateLineItemDiscounts(List<Id> oppIds) {
-		Set<Id> acctIds = new Set<Id>();
 		Set<Id> priceEntryIds = new Set<Id>();
+		Set<Id> productIds = new Set<Id>();
 		List<OpportunityLineItem> oppLines = 
 			[SELECT Id, OpportunityId, PricebookEntryId, Discount, Quantity FROM OpportunityLineItem WHERE OpportunityId IN :oppIds];
 		
@@ -18,14 +18,22 @@ public with sharing class OppDiscountService {
 			[SELECT Id, AccountId FROM Opportunity WHERE Id IN :oppIds]);
 		Map<Id, PricebookEntry> priceEntryMap = new Map<Id, PricebookEntry>(
 			[SELECT Id, Product2Id, Product2.Name FROM PricebookEntry WHERE Id IN :priceEntryIds]);
+
+		for(PricebookEntry priceEntry : priceEntryMap.values()) {
+			productIds.add(priceEntry.Product2Id);
+		}
+
+		Map<Id, Product2> prodMap = new Map<Id, Product2>(
+			[SELECT Id, Name FROM Product2 WHERE Id IN :productIds]);
 			
 		for(OpportunityLineItem item : oppLines) {
 			Opportunity opp = oppMap.get(item.OpportunityId);
 			PricebookEntry priceEntry = priceEntryMap.get(item.PricebookEntryId);
+			Product2 prod = prodMap.get(priceEntry.Product2Id);
 
 			if(opp.AccountId == '0011F00000RQ2VDQA1') {
 				item.Discount = 20;
-			} else if(priceEntry.Product2.Name == 'Tie Fighter') {
+			} else if(prod.Name == 'Tie Fighter') {
 				item.Discount = 0;
 			} else {
 				if(opp.Type == 'Existing Customer - Upgrade') {
