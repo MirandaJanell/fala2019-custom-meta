@@ -30,15 +30,21 @@ sfdx force:user:permset:assign -n DemoAppDeveloper -u fala19-meta
 In order to test our example app, we need to load sample data to work with.
 
 ```sh
-sfdx force:data:tree:import -u fala19-meta -f data/Product2.json
+sfdx force:data:tree:import -p data/Account-Opportunity-plan.json -u fala19-meta
+sfdx force:data:tree:import -f data/Product2.json -u fala19-meta
+```
+
+### Create Standard Pricebook Entry records
+Our example works with Opportunity Products, and in order to add Products to Opportunities those products need price information. To keep it simple we will run some Anonymous Apex that activates our Standard Pricebook and adds a PricebookEntry record for each Product with a UnitPrice of 1000.
+
+```sh
+sfdx force:apex:execute -f scripts/createStandardPrices.apex -u fala19-meta
 ```
 
 ### Open Scratch Org in Browser
 ```sh
 sfdx force:org:open -u fala19-meta
 ```
-
-
 
 ## Resources
 

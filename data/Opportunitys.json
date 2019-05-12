@@ -1,0 +1,15 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef1"
+            },
+            "Name": "Yavin 4 Reenactment",
+            "CloseDate": "2019-05-13",
+            "StageName": "Prospecting",
+            "Type": "Existing Customer - Upgrade",
+            "AccountId": "@AccountRef3"
+        }
+    ]
+}
