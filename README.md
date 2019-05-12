@@ -21,6 +21,11 @@ In order to test our example app, we will first need to push our source to our s
 sfdx force:source:push -u fala19-meta
 ```
 
+### Assign the Developer Permission Set
+```sh
+sfdx force:user:permset:assign -n DemoAppDeveloper -u fala19-meta
+```
+
 ### Load Test Data in Scratch Org
 In order to test our example app, we need to load sample data to work with.
 
