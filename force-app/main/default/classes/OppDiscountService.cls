@@ -35,38 +35,92 @@ public with sharing class OppDiscountService {
 
 		Map<Id, Product2> prodMap = new Map<Id, Product2>(
 			(List<Product2>) queryRecords('Product2', objFieldsMap, 'Id', productIds));
+
+		Map<String, Map<Id, SObject>> recordsMapMap = new Map<String, Map<Id, SObject>> {
+			'Opportunity' => oppMap,
+			'PricebookEntry' => priceEntryMap,
+			'Product2' => prodMap
+		};
 			
 		for(OpportunityLineItem item : oppLines) {
-			Opportunity opp = oppMap.get(item.OpportunityId);
-			PricebookEntry priceEntry = priceEntryMap.get(item.PricebookEntryId);
-			Product2 prod = prodMap.get(priceEntry.Product2Id);
+			for(Opp_Line_Discount_Rule__mdt rule : discountRules) {
+				SObject record = getRuleRecord(rule, item, recordsMapMap);
 
-			if(opp.AccountId == '0011F00000RQ2VDQA1') {
-				item.Discount = 20;
-			} else if(prod.Name == 'Tie Fighter') {
-				item.Discount = 0;
-			} else {
-				if(opp.Type == 'Existing Customer - Upgrade') {
-					item.Discount = item.Discount + 12.5;
+				if(rule.Object__c == 'OpportunityLineItem') {
+					record = item;
+				} else {
+					SObject parentRec;
+
+					if(rule.Object__c == 'Product2') {
+						parentRec = recordsMapMap.get('PricebookEntry').get(item.PricebookEntryId);
+					} else if(item.get(rule.Object__c + 'Id') != null) {
+						parentRec = item;
+					}
+
+					if(parentRec != null) {
+						Map<Id, SObject> objMap = recordsMapMap.get(rule.Object__c);
+						record = objMap.get((Id) parentRec.get(rule.Object__c + 'Id'));
+					}
 				}
 
-				if(opp.Type == 'Existing Customer - Replacement') {
-					item.Discount = item.Discount + 7.5;
-				}
+				Object val = record.get(rule.Field__r.QualifiedApiName);
+				
+				if(val != null) {
+					if(String.isNotBlank(rule.Value__c)) {
+						String strVal = (String) val;
 
-				if(item.Quantity > 100) {
-					item.Discount = item.Discount + 2.5;
-				} else if(item.Quantity > 500) {
-					item.Discount = item.Discount + 5;
-				} else if(item.Quantity > 1000) {
-					item.Discount = item.Discount + 10;
-				} else if(item.Quantity > 2500) {
-					item.Discount = item.Discount + 15;
+						if(rule.Value__c.equals(strVal)) {
+							item.Discount = item.Discount + rule.Discount_Percent__c;
+						}
+					} else {
+						Decimal numVal = (Decimal) val;
+
+						if(rule.Min_Value__c != null) {	// We have a min value rule
+							if(rule.Max_Value__c != null) { // And a max value rule
+								if(numVal >= rule.Min_Value__c && numVal <= rule.Max_Value__c) {	// value is between min and max values
+									item.Discount = item.Discount + rule.Discount_Percent__c;
+								}
+							} else { // just a min value rule
+								if(numVal >= rule.Min_Value__c) {	// value is greater than or equal max value
+									item.Discount = item.Discount + rule.Discount_Percent__c;
+								}
+							}
+						} else if(rule.Max_Value__c != null && numVal <= rule.Max_Value__c) { // just a max value rule and value is less than or equal max value
+							item.Discount = item.Discount + rule.Discount_Percent__c;
+						}
+					}
+
+					if(!rule.Allow_Additional_Discounts__c) {
+						break;
+					}
 				}
 			}
 		}
 
 		update oppLines;
+	}
+
+	private SObject getRuleRecord(Opp_Line_Discount_Rule__mdt rule, OpportunityLineItem item, Map<String, Map<Id, SObject>> recordsMapMap) {
+		SObject record;
+
+		if(rule.Object__c == 'OpportunityLineItem') {
+			record = item;
+		} else {
+			SObject parentRec;
+
+			if(rule.Object__c == 'Product2') {
+				parentRec = recordsMapMap.get('PricebookEntry').get(item.PricebookEntryId);
+			} else if(item.get(rule.Object__c + 'Id') != null) {
+				parentRec = item;
+			}
+
+			if(parentRec != null) {
+				Map<Id, SObject> objMap = recordsMapMap.get(rule.Object__c);
+				record = objMap.get((Id) parentRec.get(rule.Object__c + 'Id'));
+			}
+		}
+
+		return record;
 	}
 
 	private void processMetadataFields(List<Opp_Line_Discount_Rule__mdt> discountRules, Map<String, Set<String>> objFieldsMap) {
