@@ -92,15 +92,21 @@ public with sharing class OppDiscountService {
 	}
 
 	private List<SObject> queryRecords(String objName, Map<String, Set<String>> objFieldsMap, String whereField, Set<Id> whereIds) {
+		List<SObject> records = new List<SObject>();
 		List<String> fields = new List<String>(objFieldsMap.get(objName));
-		String query = String.format(
-			'SELECT {0} FROM {1} WHERE {2} IN :whereIds', 
-			new List<String> {
-				String.join(fields, ', '),
-				objName,
-				whereField
-			});
 
-		return Database.query(query);
+		if(!fields.isEmpty()) {
+			String query = String.format(
+				'SELECT {0} FROM {1} WHERE {2} IN :whereIds', 
+				new List<String> {
+					String.join(fields, ', '),
+					objName,
+					whereField
+				});
+
+			records = Database.query(query);
+		}
+		
+		return records;
 	}
 }
