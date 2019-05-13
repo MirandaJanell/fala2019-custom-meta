@@ -48,6 +48,23 @@ sfdx force:org:open -u fala19-meta
 ## Step 1: Update Queries to allow for Configurable Fields
 Our ultimate goal is to be make discount rules configurable. Since we won't know all the possible fields when we write the code, we will need to update our queries to be dynamic queries in this step.
 
+## Step 2: Create the Custom Metadata Type
+In this step we will be creating the Opp Line Discount Rules Custom Metadata Type. We will need to add the following fields
+Object - Metadata Relationship (Entity Definition) - Required
+Field - Metadata Relationship (Field Definition) - Required
+Discount Percent - Percent (16,2) - Required
+Order - Number (18,0)
+Value - Text(255)
+Min Value - Number (16,2)
+Max Value - Number (16,2)
+Allow Additional Discounts - Checkbox
+
+## Step 3: Create the Custom Metadata Records
+Now that the Opp Line Discount Rules Custom Metadata Type has been created our next step is to add records. We will be creating records based on the values in the OppDiscountService Apex Class.
+
+Step 4: Update the Apex Class
+The final step is to update the OppDiscountService Apex Class to load the metadata, query the data with the configured custom fields, and apply the discounts based on the data loaded.
+
 ## Resources
 
 ## Description of Files and Directories
