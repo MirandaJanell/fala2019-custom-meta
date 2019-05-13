@@ -83,6 +83,8 @@ public with sharing class OppDiscountService {
 			} else if(rule.Object__c == 'Product2') {
 				 fields = objFieldsMap.get('PricebookEntry');
 				 fields.add('Product2Id');
+				 fields = objFieldsMap.get('OpportunityLineItem');
+				 fields.add('PricebookEntryId');
 			}
 		}
 	}
