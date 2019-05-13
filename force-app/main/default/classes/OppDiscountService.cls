@@ -4,10 +4,16 @@ public with sharing class OppDiscountService {
 	 * @param  oppIds The Opportunitiy Record Ids 
 	 */
 	public void updateLineItemDiscounts(List<Id> oppIds) {
+		Set<Id> oppIdsSet = new Set<Id>(oppIds);
 		Set<Id> priceEntryIds = new Set<Id>();
 		Set<Id> productIds = new Set<Id>();
-		List<OpportunityLineItem> oppLines = 
-			[SELECT Id, OpportunityId, PricebookEntryId, Discount, Quantity FROM OpportunityLineItem WHERE OpportunityId IN :oppIds];
+		// Collect the fields that need to be queried for each object
+		Set<String> oppFields = new Set<String> { 'Id', 'AccountId' };
+		Set<String> oppLineFields = new Set<String> { 'Id', 'OpportunityId', 'PricebookEntryId', 'Discount', 'Quantity' };
+		Set<String> priceEntryFields = new Set<String> { 'Id', 'Product2Id' };
+		Set<String> productFields = new Set<String> { 'Id', 'Name' };
+
+		List<OpportunityLineItem> oppLines = (List<OpportunityLineItem>) queryRecords('OpportunityLineItem', oppLineFields, 'OpportunityId', oppIdsSet);
 		
 		for(OpportunityLineItem item : oppLines) {
 			item.Discount  = 0;
@@ -15,16 +21,16 @@ public with sharing class OppDiscountService {
 		}
 
 		Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>(
-			[SELECT Id, AccountId FROM Opportunity WHERE Id IN :oppIds]);
+			(List<Opportunity>) queryRecords('Opportunity', oppFields, 'Id', oppIdsSet));
 		Map<Id, PricebookEntry> priceEntryMap = new Map<Id, PricebookEntry>(
-			[SELECT Id, Product2Id, Product2.Name FROM PricebookEntry WHERE Id IN :priceEntryIds]);
+			(List<PricebookEntry>) queryRecords('PricebookEntry', priceEntryFields, 'Id', priceEntryIds));
 
 		for(PricebookEntry priceEntry : priceEntryMap.values()) {
 			productIds.add(priceEntry.Product2Id);
 		}
 
 		Map<Id, Product2> prodMap = new Map<Id, Product2>(
-			[SELECT Id, Name FROM Product2 WHERE Id IN :productIds]);
+			(List<Product2>) queryRecords('Product2', productFields, 'Id', productIds));
 			
 		for(OpportunityLineItem item : oppLines) {
 			Opportunity opp = oppMap.get(item.OpportunityId);
@@ -57,5 +63,18 @@ public with sharing class OppDiscountService {
 		}
 
 		update oppLines;
+	}
+
+	private List<SObject> queryRecords(String objName, Set<String> fieldsSet, String whereField, Set<Id> whereIds) {
+		List<String> fields = new List<String>(fieldsSet);
+		String query = String.format(
+			'SELECT {0} FROM {1} WHERE {2} IN :whereIds', 
+			new List<String> {
+				String.join(fields, ', '),
+				objName,
+				whereField
+			});
+
+		return Database.query(query);
 	}
 }
