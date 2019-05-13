@@ -19,6 +19,10 @@
                 <field>Field__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>Discount_Percent__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Value__c</field>
             </layoutItems>
@@ -43,6 +47,9 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IsProtected</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
