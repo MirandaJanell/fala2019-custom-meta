@@ -88,7 +88,7 @@ public with sharing class OppDiscountService {
 	}
 
 	private List<Opp_Line_Discount_Rule__mdt> queryDiscountRulesMetadata() {
-		return [SELECT Id, Object__c, Field__r.QualifiedApiName, Value__c, Min_Value__c, Max_Value__c, Discount_Percent__c, Allow_Additional_Discounts__c FROM Opp_Line_Discount_Rule__mdt];
+		return [SELECT Id, Object__c, Field__r.QualifiedApiName, Value__c, Min_Value__c, Max_Value__c, Discount_Percent__c, Allow_Additional_Discounts__c FROM Opp_Line_Discount_Rule__mdt ORDER BY Order__c, Min_Value__c];
 	}
 
 	private List<SObject> queryRecords(String objName, Map<String, Set<String>> objFieldsMap, String whereField, Set<Id> whereIds) {
