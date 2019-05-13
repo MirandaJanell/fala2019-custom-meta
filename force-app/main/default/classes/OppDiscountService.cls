@@ -8,10 +8,10 @@ public with sharing class OppDiscountService {
 		Set<Id> priceEntryIds = new Set<Id>();
 		Set<Id> productIds = new Set<Id>();
 		// Collect the fields that need to be queried for each object
-		Set<String> oppFields = new Set<String> { 'Id', 'AccountId' };
-		Set<String> oppLineFields = new Set<String> { 'Id', 'OpportunityId', 'PricebookEntryId', 'Discount', 'Quantity' };
-		Set<String> priceEntryFields = new Set<String> { 'Id', 'Product2Id' };
-		Set<String> productFields = new Set<String> { 'Id', 'Name' };
+		Set<String> oppFields = new Set<String>();
+		Set<String> oppLineFields = new Set<String> { 'Id', 'Discount' };
+		Set<String> priceEntryFields = new Set<String>();
+		Set<String> productFields = new Set<String>();
 
 		List<OpportunityLineItem> oppLines = (List<OpportunityLineItem>) queryRecords('OpportunityLineItem', oppLineFields, 'OpportunityId', oppIdsSet);
 		
