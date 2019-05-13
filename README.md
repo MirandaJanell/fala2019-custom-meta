@@ -63,7 +63,7 @@ In this step we will be creating the Opp Line Discount Rules Custom Metadata Typ
 ## Step 3: Create the Custom Metadata Records
 Now that the Opp Line Discount Rules Custom Metadata Type has been created our next step is to add records. We will be creating records based on the values in the OppDiscountService Apex Class.
 
-Step 4: Update the Apex Class
+## Step 4: Update the Apex Class
 The final step is to update the OppDiscountService Apex Class to load the metadata, query the data with the configured custom fields, and apply the discounts based on the data loaded.
 
 ## Resources
