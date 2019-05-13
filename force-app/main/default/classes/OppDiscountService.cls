@@ -15,6 +15,7 @@ public with sharing class OppDiscountService {
 			'Product' => new Set<String>()
 		};
 		List<Opp_Line_Discount_Rule__mdt> discountRules = queryDiscountRulesMetadata();
+		processMetadataFields(discountRules, objFieldsMap);
 
 		List<OpportunityLineItem> oppLines = (List<OpportunityLineItem>) queryRecords('OpportunityLineItem', objFieldsMap, 'OpportunityId', oppIdsSet);
 		
@@ -66,6 +67,24 @@ public with sharing class OppDiscountService {
 		}
 
 		update oppLines;
+	}
+
+	private void processMetadataFields(List<Opp_Line_Discount_Rule__mdt> discountRules, Map<String, Set<String>> objFieldsMap) {
+		for(Opp_Line_Discount_Rule__mdt rule : discountRules) {
+			Set<String> fields = objFieldsMap.get(rule.Object__c);
+			fields.add(rule.Field__r.QualifiedApiName);
+
+			if(rule.Object__c == 'Opportunity') {
+				 fields = objFieldsMap.get('OpportunityLineItem');
+				 fields.add('OpportunityId');
+			} else if(rule.Object__c == 'PricebookEntry') {
+				 fields = objFieldsMap.get('OpportunityLineItem');
+				 fields.add('PricebookEntryId');
+			} else if(rule.Object__c == 'Product2') {
+				 fields = objFieldsMap.get('PricebookEntry');
+				 fields.add('Product2Id');
+			}
+		}
 	}
 
 	private List<Opp_Line_Discount_Rule__mdt> queryDiscountRulesMetadata() {
