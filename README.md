@@ -45,6 +45,8 @@ sfdx force:apex:execute -f scripts/createStandardPrices.apex -u fala19-meta
 ```sh
 sfdx force:org:open -u fala19-meta
 ```
+## Step 1: Update Queries to allow for Configurable Fields
+Our ultimate goal is to be make discount rules configurable. Since we won't know all the possible fields when we write the code, we will need to update our queries to be dynamic queries in this step.
 
 ## Resources
 
