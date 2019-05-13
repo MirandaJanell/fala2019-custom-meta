@@ -59,6 +59,9 @@ Min Value - Number (16,2)
 Max Value - Number (16,2)
 Allow Additional Discounts - Checkbox
 
+## Step 3: Create the Custom Metadata Records
+Now that the Opp Line Discount Rules Custom Metadata Type has been created our next step is to add records. We will be creating records based on the values in the OppDiscountService apex class.
+
 ## Resources
 
 ## Description of Files and Directories
