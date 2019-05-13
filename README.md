@@ -56,6 +56,7 @@ Order - Number (18,0)
 Value - Text(255)
 Min Value - Number (16,2)
 Max Value - Number (16,2)
+Allow Additional Discounts (Checkbox)
 
 ## Resources
 
