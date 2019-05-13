@@ -50,14 +50,15 @@ Our ultimate goal is to be make discount rules configurable. Since we won't know
 
 ## Step 2: Create the Custom Metadata Type
 In this step we will be creating the Opp Line Discount Rules Custom Metadata Type. We will need to add the following fields
-Object - Metadata Relationship (Entity Definition) - Required
-Field - Metadata Relationship (Field Definition) - Required
-Discount Percent - Percent (16,2) - Required
-Order - Number (18,0)
-Value - Text(255)
-Min Value - Number (16,2)
-Max Value - Number (16,2)
-Allow Additional Discounts - Checkbox
+
+* Object - Metadata Relationship (Entity Definition) - Required
+* Field - Metadata Relationship (Field Definition) - Required
+* Discount Percent - Percent (16,2) - Required
+* Order - Number (18,0)
+* Value - Text(255)
+* Min Value - Number (16,2)
+* Max Value - Number (16,2)
+* Allow Additional Discounts - Checkbox
 
 ## Step 3: Create the Custom Metadata Records
 Now that the Opp Line Discount Rules Custom Metadata Type has been created our next step is to add records. We will be creating records based on the values in the OppDiscountService Apex Class.
