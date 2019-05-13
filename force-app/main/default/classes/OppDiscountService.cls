@@ -12,7 +12,7 @@ public with sharing class OppDiscountService {
 			'Opportunity' => new Set<String>(),
 			'OpportunityLineItem' => new Set<String> { 'Id', 'Discount' },
 			'PricebookEntry' => new Set<String>(),
-			'Product' => new Set<String>()
+			'Product2' => new Set<String>()
 		};
 		List<Opp_Line_Discount_Rule__mdt> discountRules = queryDiscountRulesMetadata();
 		processMetadataFields(discountRules, objFieldsMap);
