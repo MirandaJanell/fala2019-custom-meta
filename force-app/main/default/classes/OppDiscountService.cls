@@ -12,6 +12,7 @@ public with sharing class OppDiscountService {
 		Set<String> oppLineFields = new Set<String> { 'Id', 'Discount' };
 		Set<String> priceEntryFields = new Set<String>();
 		Set<String> productFields = new Set<String>();
+		List<Opp_Line_Discount_Rule__mdt> discountRules = queryDiscountRulesMetadata();
 
 		List<OpportunityLineItem> oppLines = (List<OpportunityLineItem>) queryRecords('OpportunityLineItem', oppLineFields, 'OpportunityId', oppIdsSet);
 		
@@ -63,6 +64,10 @@ public with sharing class OppDiscountService {
 		}
 
 		update oppLines;
+	}
+
+	private List<Opp_Line_Discount_Rule__mdt> queryDiscountRulesMetadata() {
+		return [SELECT Id, Object__c, Field__r.QualifiedApiName, Value__c, Min_Value__c, Max_Value__c, Discount_Percent__c, Allow_Additional_Discounts__c FROM Opp_Line_Discount_Rule__mdt];
 	}
 
 	private List<SObject> queryRecords(String objName, Set<String> fieldsSet, String whereField, Set<Id> whereIds) {
