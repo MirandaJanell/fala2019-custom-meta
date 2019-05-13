@@ -8,13 +8,15 @@ public with sharing class OppDiscountService {
 		Set<Id> priceEntryIds = new Set<Id>();
 		Set<Id> productIds = new Set<Id>();
 		// Collect the fields that need to be queried for each object
-		Set<String> oppFields = new Set<String>();
-		Set<String> oppLineFields = new Set<String> { 'Id', 'Discount' };
-		Set<String> priceEntryFields = new Set<String>();
-		Set<String> productFields = new Set<String>();
+		Map<String, Set<String>> objFieldsMap = new Map<String, Set<String>> {
+			'Opportunity' => new Set<String>(),
+			'OpportunityLineItem' => new Set<String> { 'Id', 'Discount' },
+			'PricebookEntry' => new Set<String>(),
+			'Product' => new Set<String>()
+		};
 		List<Opp_Line_Discount_Rule__mdt> discountRules = queryDiscountRulesMetadata();
 
-		List<OpportunityLineItem> oppLines = (List<OpportunityLineItem>) queryRecords('OpportunityLineItem', oppLineFields, 'OpportunityId', oppIdsSet);
+		List<OpportunityLineItem> oppLines = (List<OpportunityLineItem>) queryRecords('OpportunityLineItem', objFieldsMap, 'OpportunityId', oppIdsSet);
 		
 		for(OpportunityLineItem item : oppLines) {
 			item.Discount  = 0;
@@ -22,16 +24,16 @@ public with sharing class OppDiscountService {
 		}
 
 		Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>(
-			(List<Opportunity>) queryRecords('Opportunity', oppFields, 'Id', oppIdsSet));
+			(List<Opportunity>) queryRecords('Opportunity', objFieldsMap, 'Id', oppIdsSet));
 		Map<Id, PricebookEntry> priceEntryMap = new Map<Id, PricebookEntry>(
-			(List<PricebookEntry>) queryRecords('PricebookEntry', priceEntryFields, 'Id', priceEntryIds));
+			(List<PricebookEntry>) queryRecords('PricebookEntry', objFieldsMap, 'Id', priceEntryIds));
 
 		for(PricebookEntry priceEntry : priceEntryMap.values()) {
 			productIds.add(priceEntry.Product2Id);
 		}
 
 		Map<Id, Product2> prodMap = new Map<Id, Product2>(
-			(List<Product2>) queryRecords('Product2', productFields, 'Id', productIds));
+			(List<Product2>) queryRecords('Product2', objFieldsMap, 'Id', productIds));
 			
 		for(OpportunityLineItem item : oppLines) {
 			Opportunity opp = oppMap.get(item.OpportunityId);
@@ -70,8 +72,8 @@ public with sharing class OppDiscountService {
 		return [SELECT Id, Object__c, Field__r.QualifiedApiName, Value__c, Min_Value__c, Max_Value__c, Discount_Percent__c, Allow_Additional_Discounts__c FROM Opp_Line_Discount_Rule__mdt];
 	}
 
-	private List<SObject> queryRecords(String objName, Set<String> fieldsSet, String whereField, Set<Id> whereIds) {
-		List<String> fields = new List<String>(fieldsSet);
+	private List<SObject> queryRecords(String objName, Map<String, Set<String>> objFieldsMap, String whereField, Set<Id> whereIds) {
+		List<String> fields = new List<String>(objFieldsMap.get(objName));
 		String query = String.format(
 			'SELECT {0} FROM {1} WHERE {2} IN :whereIds', 
 			new List<String> {
